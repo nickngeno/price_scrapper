@@ -20,11 +20,8 @@ def scrapp():
     converted_price = float(price[4:].replace(",",""))
 
     print(title,converted_price)
-    if converted_price < 17000:
+    if converted_price < 16500:
         send_mail()
-    elif converted_price ==18999:
-        send_mail()
-
 # function to send mail
 def send_mail():
     server = smtplib.SMTP('smtp.gmail.com',587)
@@ -49,4 +46,4 @@ def send_mail():
 
 while (True):
     scrapp()
-    time.sleep(3600)
+    time.sleep(60 * 60 * 12)
