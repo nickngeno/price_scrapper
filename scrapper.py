@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import smtplib
 import time
-
+from datetime import datetime
 #input the url to scrap daa from 
 url = 'https://www.jumia.co.ke/redmi-note-8-6.3-fhd-4gb-ram-64gb-48mp-4g-black-xiaomi-mpg224066.html'
 
@@ -18,10 +18,12 @@ def scrapp():
     title = soup.find(attrs='-fs20 -pts -pbxs').get_text()
     price = soup.find(attrs="-b -ltr -tal -fs24").get_text()
     converted_price = float(price[4:].replace(",",""))
+    time_now = datetime.datetime.now()
 
-    print(title,converted_price)
-    if converted_price < 16500:
+    print(title,converted_price,time_now)
+    if converted_price == 16500:
         send_mail()
+        
 # function to send mail
 def send_mail():
     server = smtplib.SMTP('smtp.gmail.com',587)
